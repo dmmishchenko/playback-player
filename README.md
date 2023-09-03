@@ -18,7 +18,7 @@
 ## Development
 
 - open project
-- open workspace.code-workspace to apply workspace settings
+- open `workspace.code-workspace` to apply workspace settings
 
 
 ## Testing
