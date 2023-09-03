@@ -20,6 +20,9 @@
 - open project
 - open `workspace.code-workspace` to apply workspace settings
 
+## PWA
+- if you want to enable pwa service worker - change `enabled` flag in `app.module.ts`
+
 
 ## Testing
 

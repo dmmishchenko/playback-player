@@ -56,7 +56,6 @@ export class VideoItemComponent extends AbstractMediaFileComponent implements On
   }
 
   public onLoad() {
-    console.log('onLoad')
     this.loaded = true
   }
 

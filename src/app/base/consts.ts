@@ -1,1 +1,2 @@
 export const SCREEN_KEY = '294d453d-9176-44c2-9db9-f2759031e8e4'
+export const UPDATE_SCREEN_PLAYLIST_TIME_MS = 600 * 1000

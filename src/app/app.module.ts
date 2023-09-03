@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core'
+import { NgModule, isDevMode } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 
 import { HttpClientModule } from '@angular/common/http'
@@ -13,7 +13,8 @@ import { PlaybackRepositoryService } from './repositories/playback-repository.se
     HttpClientModule,
     PlaybackPlayerModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: true,
+      // if you want to enable service worker for dev change this line
+      enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
