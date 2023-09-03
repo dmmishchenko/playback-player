@@ -1,0 +1,17 @@
+.media {
+  position: relative;
+  visibility: hidden;
+  &.-active {
+    visibility: visible;
+  }
+}
+
+.time{
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  color: white;
+  background-color: black;
+  padding: 4px 8px;
+  border-radius: 8px;
+}

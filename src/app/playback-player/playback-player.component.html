@@ -1,0 +1,42 @@
+<div>
+  <span *ngIf="isInitialLoad"> Loading... </span>
+
+  <ng-container *ngIf="!isInitialLoad">
+    <ng-container *ngIf="screenPlaylists.length; else noItems">
+      <div class="playback-wrapper">
+        <ng-container *ngFor="let playlist of screenPlaylists">
+          <ng-container
+            *ngFor="let media of playlist.playlistItems; index as i; trackBy: trackByFunc"
+          >
+            <div class="media-wrapper">
+              <ng-container [ngSwitch]="true">
+                <ng-container *ngSwitchCase="isImage(media.creativeKey)">
+                  <app-image-item
+                    [creativeKey]="media.creativeKey"
+                    [duration]="media.duration"
+                    [isActive]="media.creativeKey === activeKey"
+                    [index]="i"
+                    (playEnded)="handlePlayEnded($event)"
+                  ></app-image-item>
+                </ng-container>
+                <ng-container *ngSwitchCase="isVideo(media.creativeKey)">
+                  <app-video-item
+                    [creativeKey]="media.creativeKey"
+                    [duration]="media.duration"
+                    [isActive]="media.creativeKey === activeKey"
+                    [index]="i"
+                    (playEnded)="handlePlayEnded($event)"
+                  ></app-video-item>
+                </ng-container>
+              </ng-container>
+            </div>
+          </ng-container>
+        </ng-container>
+      </div>
+
+      <button [disabled]="isPlaying" (click)="playSequence()">Play</button>
+    </ng-container>
+  </ng-container>
+
+  <ng-template #noItems> No items loaded </ng-template>
+</div>

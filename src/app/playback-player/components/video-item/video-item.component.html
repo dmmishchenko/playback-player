@@ -1,0 +1,14 @@
+<div class="media" [class.-active]="isActive">
+  <video
+    #videoRef
+    [src]="creativeKey"
+    preload="auto"
+    (loadeddata)="onLoad()"
+    (ended)="onEnded()"
+  ></video>
+  <div class="time">
+    <span>{{ currentTime }}</span>
+    <span>/</span>
+    <span>{{ duration }}</span>
+  </div>
+</div>
