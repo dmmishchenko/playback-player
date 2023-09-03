@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { PlaybackPlayerComponent } from './playback-player.component'
-import { VideoItemComponent } from './components/video-item/video-item.component'
+import { NgModule } from '@angular/core'
 import { ImageItemComponent } from './components/image-item/image-item.component'
+import { VideoItemComponent } from './components/video-item/video-item.component'
+import { PlaybackPlayerComponent } from './playback-player.component'
 
 @NgModule({
   imports: [CommonModule],

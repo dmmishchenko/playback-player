@@ -45,7 +45,7 @@ export class ImageItemComponent extends AbstractMediaFileComponent implements On
     return of(this.canPlay())
   }
 
-  onLoad() {
+  public onLoad() {
     this.loaded = true
   }
 

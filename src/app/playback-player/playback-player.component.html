@@ -3,7 +3,10 @@
 
   <ng-container *ngIf="!isInitialLoad">
     <ng-container *ngIf="screenPlaylists.length; else noItems">
-      <div class="playback-wrapper">
+      <div
+        class="playback-wrapper"
+        [class.media-animate-out-in]="fadeInOut"
+      >
         <ng-container *ngFor="let playlist of screenPlaylists">
           <ng-container
             *ngFor="let media of playlist.playlistItems; index as i; trackBy: trackByFunc"
@@ -14,7 +17,7 @@
                   <app-image-item
                     [creativeKey]="media.creativeKey"
                     [duration]="media.duration"
-                    [isActive]="media.creativeKey === activeKey"
+                    [isActive]="i === this.activeIndex"
                     [index]="i"
                     (playEnded)="handlePlayEnded($event)"
                   ></app-image-item>
@@ -23,7 +26,7 @@
                   <app-video-item
                     [creativeKey]="media.creativeKey"
                     [duration]="media.duration"
-                    [isActive]="media.creativeKey === activeKey"
+                    [isActive]="i === this.activeIndex"
                     [index]="i"
                     (playEnded)="handlePlayEnded($event)"
                   ></app-video-item>

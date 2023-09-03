@@ -1,6 +1,7 @@
 .media-wrapper {
   position: absolute;
 }
+
 .playback-wrapper {
   position: relative;
   width: 600px;
@@ -9,4 +10,32 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.media-animate-out-in {
+  animation: fade-out-in 3s linear 0s forwards;
+}
+
+@keyframes fade-out-in {
+  0% {
+    opacity: 1;
+  }
+  15% {
+    opacity: 0.75;
+  }
+  35% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0;
+  }
+  65% {
+    opacity: 0.5;
+  }
+  75% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 1;
+  }
 }

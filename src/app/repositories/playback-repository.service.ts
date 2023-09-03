@@ -10,11 +10,11 @@ import {
 export class PlaybackRepositoryService implements PlaybackRepositoryInterface {
   constructor(private httpClient: HttpClient) {}
 
-  getMedia(creativeKey: string): string {
+  public getMedia(creativeKey: string): string {
     return `https://test.onsignage.com/PlayerBackend/creative/get/${creativeKey}`
   }
 
-  getScreenPlayback(screenKey: string): Observable<ScreenPlayback> {
+  public getScreenPlayback(screenKey: string): Observable<ScreenPlayback> {
     return of(SCREEN_PLAYBACK_MOCK)
     // const url = `https://test.onsignage.com/PlayerBackend/screen/playlistItems/${screenKey}`
 

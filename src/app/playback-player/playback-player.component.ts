@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   Inject,
   Input,
@@ -24,7 +25,8 @@ import { AbstractMediaFileComponent } from './components/media-item/media-item.c
   selector: 'app-playback-player',
   templateUrl: './playback-player.component.html',
   styleUrls: ['./playback-player.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: []
 })
 export class PlaybackPlayerComponent implements OnInit {
   @Input() screenKey: UniqueId = SCREEN_KEY
@@ -33,12 +35,16 @@ export class PlaybackPlayerComponent implements OnInit {
 
   public screenPlaylists: Playlist[] = []
   public isInitialLoad = true
-  public activeKey: AssetUrl = ''
   public isPlaying = false
+
+  public activeIndex = 0
+
+  public fadeInOut = false
 
   constructor(
     @Inject(PLAYBACK_REPOSITORY_TOKEN)
-    private readonly playbackRepository: PlaybackRepositoryInterface
+    private readonly playbackRepository: PlaybackRepositoryInterface,
+    private readonly cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -52,7 +58,6 @@ export class PlaybackPlayerComponent implements OnInit {
         )
         .subscribe((res) => {
           this.screenPlaylists = res.playlists.filter((playlist) => playlist.playlistItems.length)
-          this.activeKey = this.screenPlaylists[0]?.playlistItems[0]?.creativeKey
         })
     } else {
       alert('Empty screen key!')
@@ -85,21 +90,32 @@ export class PlaybackPlayerComponent implements OnInit {
   }
 
   public handlePlayEnded(index: number) {
-    //show cross fade animation
+    this.fadeInOut = true
+    this.cdr.markForCheck()
 
     //play next
-    const nextIndex = index + 1
+    let nextIndex = index + 1
     if (nextIndex === this.mediaItemsQuery?.length) {
       // start from first
-      this.playItem(0)
+      nextIndex = 0
     }
-    this.playItem(nextIndex)
+
+    setTimeout(() => {
+      this.fadeInOut = false
+      this.playItem(this.activeIndex)
+    }, 2200)
+
+    setTimeout(() => {
+      this.activeIndex = nextIndex
+      this.cdr.markForCheck()
+    }, 1000)
   }
 
   private playItem(index: number) {
     const item = this.mediaItemsQuery?.toArray().at(index)
     if (item) {
-      this.activeKey = item.creativeKey
+      this.cdr.markForCheck()
+
       item.play().subscribe((status) => {
         if (!status) {
           this.handlePlayEnded(index)
