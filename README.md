@@ -1,5 +1,8 @@
 # PlaybackPlayer
 
+## Preview
+![](/preview/preview.gif)
+
 ## environment requirements
 
 - Node.js in versions 14.20.x, 16.13.x or 18.10.x or higher.
