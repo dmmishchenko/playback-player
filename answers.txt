@@ -1,0 +1,4 @@
+1.How would you have implement the Bonus question? (If you hadnt implmented it :) 
+Yes, i've used combination of timer and online status detector. I merge playlists when one media playing ended and merge new items into playback.
+2.How would you support offline mode? E.g in case the computer reboot and returns without internet.
+I use angula pwa service worker to cache requests for screen playlist and playlist item
