@@ -1,7 +1,7 @@
 # PlaybackPlayer
 
 ## Preview
-![](/preview/preview.gif)
+![](https://github.com/dmmishchenko/playback-player/blob/master/preview/preview.gif)
 
 ## environment requirements
 
