@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { Observable, of } from 'rxjs'
+import { Observable } from 'rxjs'
 import {
   PlaybackRepositoryInterface,
   ScreenPlayback
@@ -11,14 +11,13 @@ export class PlaybackRepositoryService implements PlaybackRepositoryInterface {
   constructor(private httpClient: HttpClient) {}
 
   public getMedia(creativeKey: string): string {
-    return `https://test.onsignage.com/PlayerBackend/creative/get/${creativeKey}`
+    return `/PlayerBackend/creative/get/${creativeKey}`
   }
 
   public getScreenPlayback(screenKey: string): Observable<ScreenPlayback> {
-    return of(SCREEN_PLAYBACK_MOCK)
-    // const url = `https://test.onsignage.com/PlayerBackend/screen/playlistItems/${screenKey}`
+    const url = `/PlayerBackend/screen/playlistItems/${screenKey}`
 
-    // return this.httpClient.get<ScreenPlayback>(url, { headers })
+    return this.httpClient.get<ScreenPlayback>(url)
   }
 }
 

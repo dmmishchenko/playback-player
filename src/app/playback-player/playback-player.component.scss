@@ -4,12 +4,16 @@
 
 .playback-wrapper {
   position: relative;
-  width: 600px;
-  height: 450px;
+  max-width: var(--asset-width);
+  min-width: var(--asset-width);
+
+  max-height: var(--asset-height);
+  min-height: var(--asset-height);
 
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 10px 0;
 }
 
 .media-animate-out-in {

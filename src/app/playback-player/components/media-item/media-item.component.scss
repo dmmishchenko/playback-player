@@ -1,6 +1,13 @@
 .media {
   position: relative;
   visibility: hidden;
+
+  max-width: var(--asset-width);
+  min-width: var(--asset-width);
+
+  max-height: var(--asset-height);
+  min-height: var(--asset-height);
+
   &.-active {
     visibility: visible;
   }

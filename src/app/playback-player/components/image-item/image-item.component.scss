@@ -1,4 +1,5 @@
 img {
-  width: 100%;
-  height: 100%;
+  width: var(--asset-width);
+  height: var(--asset-height);
+  object-fit: cover;
 }

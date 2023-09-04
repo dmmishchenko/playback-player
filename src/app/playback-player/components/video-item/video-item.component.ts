@@ -33,7 +33,7 @@ export class VideoItemComponent extends AbstractMediaFileComponent implements On
   }
 
   override play(): Observable<boolean> {
-    if (this.canPlay()) {
+    if (this.canPlay() && this.isActive) {
       const video = this.videoRef?.nativeElement
 
       if (video) {
@@ -52,7 +52,7 @@ export class VideoItemComponent extends AbstractMediaFileComponent implements On
       }
     }
 
-    return of(this.canPlay())
+    return of(this.canPlay() && this.isActive)
   }
 
   public onLoad() {

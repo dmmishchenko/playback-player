@@ -29,7 +29,7 @@ export class ImageItemComponent extends AbstractMediaFileComponent implements On
   }
 
   override play(): Observable<boolean> {
-    if (this.canPlay()) {
+    if (this.canPlay() && this.isActive) {
       this.timer = window.setInterval(() => {
         this.currentTime++
         this.cdr.markForCheck()
@@ -42,7 +42,7 @@ export class ImageItemComponent extends AbstractMediaFileComponent implements On
       }, 1000)
     }
 
-    return of(this.canPlay())
+    return of(this.canPlay() && this.isActive)
   }
 
   public onLoad() {

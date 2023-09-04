@@ -1,0 +1,6 @@
+{
+  "/**": {
+    "target": "https://test.onsignage.com",
+    "changeOrigin": true
+  }
+}

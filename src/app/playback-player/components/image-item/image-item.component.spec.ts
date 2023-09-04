@@ -53,6 +53,9 @@ describe('ImageItemComponent', () => {
 
     fixture.detectChanges()
 
+    const img = fixture.debugElement.nativeElement.querySelector('img')
+    img.dispatchEvent(new Event('load'))
+
     setTimeout(() => {
       expect(onLoadSpy).toHaveBeenCalled()
 

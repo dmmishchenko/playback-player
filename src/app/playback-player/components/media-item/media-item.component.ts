@@ -28,7 +28,7 @@ export abstract class AbstractMediaFileComponent implements OnInit {
 
   abstract play(): Observable<boolean>
 
-  protected canPlay(): boolean {
-    return this.loaded && !!this.duration && this.isActive
+  public canPlay(): boolean {
+    return this.loaded && !!this.duration
   }
 }

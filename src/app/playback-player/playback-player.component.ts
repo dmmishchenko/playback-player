@@ -58,6 +58,7 @@ export class PlaybackPlayerComponent implements OnInit, OnDestroy {
         .pipe(
           finalize(() => {
             this.isInitialLoad = false
+            this.cdr.markForCheck()
           })
         )
         .subscribe((res) => {
@@ -123,7 +124,7 @@ export class PlaybackPlayerComponent implements OnInit, OnDestroy {
 
       const TIME_TO_CHANGE_ITEM_MS = 1000
       setTimeout(() => {
-        this.activeIndex = nextIndex
+        this.trySetPlayItem(nextIndex)
         this.cdr.markForCheck()
       }, TIME_TO_CHANGE_ITEM_MS)
     }
@@ -132,6 +133,22 @@ export class PlaybackPlayerComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroyed$.next()
     this.destroyed$.complete()
+  }
+
+  private trySetPlayItem(index: number): void {
+    if (!this.mediaItemsQuery) {
+      return
+    }
+    const itemToPlay = this.mediaItemsQuery?.toArray().at(index)
+    if (itemToPlay && itemToPlay.canPlay()) {
+      this.activeIndex = index
+    } else {
+      const nextIndex = index + 1
+      if (nextIndex === this.mediaItemsQuery?.length) {
+        this.trySetPlayItem(0)
+      }
+      this.trySetPlayItem(nextIndex)
+    }
   }
 
   private playItem(index: number) {
