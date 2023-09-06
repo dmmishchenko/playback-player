@@ -1,7 +1,7 @@
 <div class="media" [class.-active]="isActive">
   <video
     #videoRef
-    [src]="creativeKey"
+    [src]="assetUrl"
     preload="auto"
     (loadeddata)="onLoad()"
     (ended)="onEnded()"

@@ -8,6 +8,7 @@ import { SCREEN_PLAYBACK_MOCK } from '../repositories/playback-repository.servic
 import { ImageItemComponent } from './components/image-item/image-item.component'
 import { VideoItemComponent } from './components/video-item/video-item.component'
 import { PlaybackPlayerComponent } from './playback-player.component'
+import { FilterByTypePipe } from './pipes/filter-by-type.pipe'
 
 describe('PlaybackPlayerComponent', () => {
   let component: PlaybackPlayerComponent
@@ -26,7 +27,12 @@ describe('PlaybackPlayerComponent', () => {
 
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      declarations: [PlaybackPlayerComponent, VideoItemComponent, ImageItemComponent],
+      declarations: [
+        PlaybackPlayerComponent,
+        VideoItemComponent,
+        ImageItemComponent,
+        FilterByTypePipe
+      ],
       providers: [{ provide: PLAYBACK_REPOSITORY_TOKEN, useValue: playbackRepositoryMock }]
     })
 

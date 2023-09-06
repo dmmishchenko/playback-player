@@ -3,13 +3,14 @@
 
   <ng-container *ngIf="!isInitialLoad">
     <ng-container *ngIf="screenPlaylists.length; else noItems">
-      <div
-        class="playback-wrapper"
-        [class.media-animate-out-in]="fadeInOut"
-      >
+      <div class="playback-wrapper" [class.media-animate-out-in]="fadeInOut">
         <ng-container *ngFor="let playlist of screenPlaylists">
           <ng-container
-            *ngFor="let media of playlist.playlistItems; index as i; trackBy: trackByFunc"
+            *ngFor="
+              let media of playlist.playlistItems | filterByType;
+              index as i;
+              trackBy: trackByFunc
+            "
           >
             <div class="media-wrapper">
               <ng-container [ngSwitch]="true">

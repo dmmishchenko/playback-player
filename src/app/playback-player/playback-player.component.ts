@@ -17,11 +17,11 @@ import {
   Playlist,
   PlaylistItem
 } from '../base/interfaces/playback-repository.interface'
-import { PlaylistItemTypes } from '../base/models/playlist-item-types'
 import { PLAYBACK_REPOSITORY_TOKEN } from '../base/tokens'
 import { UniqueId } from '../base/unique-id'
-import { AbstractMediaFileComponent } from './components/media-item/media-item.component'
 import { NetworkStatusService } from '../services/network-status.service'
+import { AbstractMediaFileComponent } from './components/media-item/media-item.component'
+import { isImageType, isVideoType } from './helpers/media-type.helper'
 
 @Component({
   selector: 'app-playback-player',
@@ -72,15 +72,11 @@ export class PlaybackPlayerComponent implements OnInit, OnDestroy {
   }
 
   public isImage(key: AssetUrl): boolean {
-    return PlaylistItemTypes.imageTypes.some((imageType) => {
-      return key.endsWith(imageType)
-    })
+    return isImageType(key)
   }
 
   public isVideo(key: AssetUrl): boolean {
-    return PlaylistItemTypes.videoTypes.some((videoType) => {
-      return key.endsWith(videoType)
-    })
+    return isVideoType(key)
   }
 
   public playSequence() {
